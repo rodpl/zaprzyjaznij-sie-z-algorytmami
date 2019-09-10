@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections;
+using NUnit.Framework;
 
 namespace Tests
 {
@@ -17,14 +18,21 @@ namespace Tests
 
                 return true;
             }
+
+            public static IEnumerable TestCases
+            {
+                get
+                {
+                    yield return new TestCaseData(5, new[] { 1, 4, 3, 2, 5 }).Returns(true);
+                    yield return new TestCaseData(5, new[] { 1, 4, 3, 3, 5 }).Returns(false);
+                }
+            }
         }
 
-        [Test]
-        [TestCase(true, 5, new[] { 1, 4, 3, 2, 5 })]
-        [TestCase(false, 5, new[] { 1, 4, 3, 3, 5 })]
-        public void Zadanie01PermutacjaTest(bool expected, int n, int[] A)
+        [TestCaseSource(typeof(Zadanie01Permutacja), nameof(Zadanie01Permutacja.TestCases))]
+        public bool Zadanie01PermutacjaTest(int n, int[] A)
         {
-            Assert.AreEqual(expected, Zadanie01Permutacja.Solution(n, A));
+            return Zadanie01Permutacja.Solution(n, A);
         }
 
         class Zadanie02Ropucha
@@ -46,11 +54,18 @@ namespace Tests
 
                 return -1;
             }
+
+            public static IEnumerable TestCases
+            {
+                get
+                {
+                    yield return new TestCaseData(new[] { 5, 8 }, new[] { 1, 3, 1, 4, 2, 3, 5, 4 }).Returns(7);
+                    yield return new TestCaseData(new[] { 5, 8 }, new[] { 1, 3, 1, 4, 3, 7, 5, 4 }).Returns(-1);
+                }
+            }
         }
 
-        [Test]
-        [TestCase(new[] { 5, 8 }, new[] { 1, 3, 1, 4, 2, 3, 5, 4 }, ExpectedResult = 7)]
-        [TestCase(new[] { 5, 8 }, new[] { 1, 3, 1, 4, 3, 7, 5, 4 }, ExpectedResult = -1)]
+        [TestCaseSource(typeof(Zadanie02Ropucha), nameof(Zadanie02Ropucha.TestCases))]
         public int Zadanie02RopuchaTest(int[] input, int[] A)
         {
            return Zadanie02Ropucha.Solution(input[0], input[1], A);
