@@ -4,8 +4,16 @@ using NUnit.Framework;
 
 namespace Tests
 {
+    using NUnit.Framework.Internal.Execution;
+
     public class Chapter03Tests
     {
+        static class Tools
+        {
+            public static int[] Create
+
+        }
+
         class Cwiczenie01Grzybiarz
         {
             public static int SolutionM2(int position, int moves, int[] A)
@@ -85,8 +93,11 @@ namespace Tests
 
             public static int SolutionNM(int position, int moves, int[] A)
             {
+                var len = A.Length;
+                var sumyPrefixowe = new int[len + 1];
+                for (var k =)
                 return 0;
-            }
+        }
 
             public static IEnumerable TestCases
             {
