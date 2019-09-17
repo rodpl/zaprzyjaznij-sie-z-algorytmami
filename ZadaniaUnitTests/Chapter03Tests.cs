@@ -8,10 +8,27 @@ namespace Tests
 
     public class Chapter03Tests
     {
-        static class Tools
+        public static class Tools
         {
-            public static int[] Create
+            public static int[] CreatePrefixSum(int[] a)
+            {
+                var result = new int[a.Length + 1];
+                int last = 0;
+                for (int i = 1; i < result.Length; i++)
+                {
+                    last = last + a[i - 1];
+                    result[i] = last;
+                }
 
+                return result;
+            }
+        }
+
+        [TestCase(new int[] { 2, 3, 8, 1 }, new int[] { 0, 2, 5, 13, 14 })]
+        public void CreatePrefixSumTest(int[] input, int[] expected)
+        {
+            var result = Tools.CreatePrefixSum(input);
+            CollectionAssert.AreEquivalent(expected, result);
         }
 
         class Cwiczenie01Grzybiarz
@@ -95,9 +112,9 @@ namespace Tests
             {
                 var len = A.Length;
                 var sumyPrefixowe = new int[len + 1];
-                for (var k =)
+
                 return 0;
-        }
+            }
 
             public static IEnumerable TestCases
             {
@@ -129,7 +146,7 @@ namespace Tests
                 var targetSum = (target * (target + 1)) / 2;
                 var exists = new bool[target];
 
-                for (int i = 0; i < n; i++ )
+                for (int i = 0; i < n; i++)
                 {
                     int leaf = A[i];
                     if (leaf > target) continue;
@@ -155,7 +172,7 @@ namespace Tests
         [TestCaseSource(typeof(Zadanie02Ropucha), nameof(Zadanie02Ropucha.TestCases))]
         public int Zadanie02RopuchaTest(int[] input, int[] A)
         {
-           return Zadanie02Ropucha.Solution(input[0], input[1], A);
+            return Zadanie02Ropucha.Solution(input[0], input[1], A);
         }
 
         class Zadanie03Przyciski
@@ -166,7 +183,7 @@ namespace Tests
                 var currentMax = 0;
                 var minimum = 0;
 
-                for (int i = 0; i < n; i++ )
+                for (int i = 0; i < n; i++)
                 {
                     var button = A[i];
                     if (button == b + 1)
@@ -197,7 +214,7 @@ namespace Tests
         // [TestCase(new[] { 5, 8 }, new[] { 1, 3, 1, 4, 3, 7, 5, 4 }, ExpectedResult = -1)]
         public int[] Zadanie03PrzyciskiTest(int[] input, int[] A)
         {
-           return Zadanie03Przyciski.Solution(input[0], input[1], A);
+            return Zadanie03Przyciski.Solution(input[0], input[1], A);
         }
     }
 }
