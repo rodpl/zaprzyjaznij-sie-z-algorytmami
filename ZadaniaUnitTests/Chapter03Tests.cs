@@ -111,9 +111,14 @@ namespace Tests
             public static int SolutionNM(int position, int moves, int[] A)
             {
                 var len = A.Length;
-                var sumyPrefixowe = new int[len + 1];
+                var result = 0;
+                var sumyPrefixowe = Tools.CreatePrefixSum(A);
+                for (int i = 0; i < System.Math.Min(position, moves); i++)
+                {
+                    var lewa_poz = position - 1; 
+                }
 
-                return 0;
+                return result;
             }
 
             public static IEnumerable TestCases
